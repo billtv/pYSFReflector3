@@ -124,3 +124,15 @@ www.grupporadiofirenze.net<BR>
  
 To see a working installation: YSF#22220<br>
   http://ysf22220.dmrbrescia.it/ysf/main.php
+
+## Docker
+
+The repository contains a Docker build and a GitHub Actions workflow. Pushes to
+`main` publish `ghcr.io/billtv/pysfreflector3:latest` and the legacy-compatible
+`ghcr.io/billtv/pysfreflector3:1.1.1` tag. Semantic-version Git tags publish
+matching image tags as well.
+
+The container runs from `/opt/pYSFReflector3` and accepts the configuration and
+database file mounts described in the compose deployment. Both the YSF socket
+and the JSON/collector socket are UDP sockets, so the JSON port must be mapped
+as `42223:42223/udp` when it needs to be reached outside the container.
